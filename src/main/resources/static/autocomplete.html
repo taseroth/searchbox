@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>easy autocomplete</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="http://easyautocomplete.com/stylesheets/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css">
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css">
+</head>
+<body>
+
+<div class="well">
+    <form>
+        <div class="form-group">
+            <label for="usersearch">Seaarch User based on description</label>
+            <input id="usersearch"/>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var optionsUserSearch = {
+            url: function (phrase) {
+                return "/searchUsers/?term=" + phrase + "&format=json";
+            },
+            template: {
+                type: "iconLeft",
+                fields: {
+                    iconSrc: "profileImageURL"
+                }
+            },
+            getValue: "screenName"
+        };
+
+        $("#usersearch").easyAutocomplete(optionsUserSearch);
+    });
+</script>
+</body>
+</html>
